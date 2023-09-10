@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Uploaded Levels</title>
+</head>
+<body>
+    <h1>Uploaded Levels</h1>
+    
+    <ul id="levelList">
+        <!-- This is where the uploaded levels will be listed -->
+    </ul>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Replace with the URL of your file listing endpoint
+        var listingUrl = "https://yourusername.github.io/your-repo-name/list_levels"; 
+
+        fetch(listingUrl)
+            .then(response => response.json())
+            .then(data => {
+                var levelList = document.getElementById("levelList");
+
+                // Loop through the list of uploaded levels and create list items
+                data.levels.forEach(function(level) {
+                    var listItem = document.createElement("li");
+                    listItem.textContent = level;
+                    levelList.appendChild(listItem);
+                });
+            })
+            .catch(error => console.error("Error fetching level list:", error));
+    });
+</script>
+
+</body>
+</html>
